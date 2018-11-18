@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>JSF RSBK Kel 39</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </h:head>
+    <body>
+        <div class="container">
+            <div class="row" style="padding: 3%; border-bottom: 1px solid #f2f2f2;">
+                <div class="col-12">
+                    <h3 align="center">Kelompok 39</h3>
+                </div>
+                <div class="col-12">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                          <a class="nav-link" href="index.xhtml">siswa</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="kelas.xhtml">kelas</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="join.xhtml">join</a>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+            <div class="row" style="margin-top: 3%;">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>Daftar Kelas</h2>
+                            <hr></hr>  
+                            <table class="table table-striped">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>ID_JURUSAN</th>
+                                        <th>JURUSAN</th>
+                                        <th>WALI</th>
+                                        <th>AKSI</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{Kelas.get_all_kelas}" var="kel">
+                                        <tr>
+                                            <td>#{kel.id_jurusan}</td>
+                                            <td>#{kel.jurusan}</td>  
+                                            <td>#{kel.wali}</td>  
+                                            <td>
+                                                <h:form>
+                                                    <h:commandButton value="Edit" action="#{Kelas.Edit_Kelas}" class="btn btn-warning btn-sm">
+                                                        <f:param name="action" value="#{kel.id_jurusan}" />
+                                                    </h:commandButton>
+                                                    &nbsp;
+                                                    <h:commandButton value="Delete" action="#{Kelas.Delete_Kelas}" class="btn btn-danger btn-sm">
+                                                        <f:param name="action" value="#{kel.id_jurusan}" />
+                                                    </h:commandButton>
+                                                </h:form>
+                                            </td>  
+                                        </tr>
+                                    </ui:repeat>
+                                </tbody>
+                            </table>   
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>Tambah Data Kelas</h2>
+                            <hr></hr>
+                            <h:form>
+                                <table class="table table-striped">
+                                <tr>
+                                   <td>ID JURUSAN </td>
+                                   <td><h:inputText value="#{Kelas.id_jurusan}" class="form-control form-control-sm"></h:inputText></td>
+                                </tr>
+                                <tr>
+                                   <td>JURUSAN </td>
+                                   <td><h:inputText value="#{Kelas.jurusan}" class="form-control form-control-sm"></h:inputText></td>
+                                </tr>
+                                <tr>
+                                   <td>WALI </td>
+                                   <td><h:inputText value="#{Kelas.wali}" class="form-control form-control-sm"></h:inputText></td>
+                                </tr>   
+                                </table>
+                                <div class="text-right">
+                                     <h:commandButton value="Tambahkan" action="#{Kelas.Tambah_Kelas}" class="btn btn-primary"></h:commandButton>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
